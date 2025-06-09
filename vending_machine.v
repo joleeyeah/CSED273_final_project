@@ -132,17 +132,17 @@ module vending_machine(
 
     //C의 T flip-flop 입력
     assign tC = (
-    qA_&qB_&qC_&qD_&()|
-    qA_&qB_&qC_&qD &()|
-    qA_&qB_&qC &qD_&(refund)|
-    qA_&qB_&qC &qD &(refund)|
-    qA_&qB &qC_&qD_&()|
-    qA_&qB &qC_&qD &()|
-    qA_&qB &qC &qD_&(refund)|
-    qA_&qB &qC &qD &(refund)|
-    qA &qB_&qC_&qD_&()|
-    qA &qB_&qC_&qD &()|
-    qA &qB_&qC &qD_&(refund)
+    qA_&qB_&qC_&qD_&(moneyin[3] | moneyin[1])|
+    qA_&qB_&qC_&qD &(moneyin[2] | moneyin[1] | moneyin[0])|
+    qA_&qB_&qC &qD_&(refund | moneyin[3] | moneyin[1])|
+    qA_&qB_&qC &qD &(refund | moneyin[3] | moneyin[2] | moneyin[1] | moneyin[0] | buy[0])|
+    qA_&qB &qC_&qD_&(moneyin[1])|
+    qA_&qB &qC_&qD &(moneyin[2] | moneyin[1] | moneyin[0] | buy[0])|
+    qA_&qB &qC &qD_&(refund | moneyin[3] | moneyin[2] | moneyin[1] | buy[1])|
+    qA_&qB &qC &qD &(refund | moneyin[3] | moneyin[2] | moneyin[1] | moneyin[0] | buy[2] | buy[0])|
+    qA &qB_&qC_&qD_&(moneyin[1] | buy[1])|
+    qA &qB_&qC_&qD &(moneyin[0] | buy[2] | buy[0])|
+    qA &qB_&qC &qD_&(refund | moneyin[3] | moneyin[2] | moneyin[1] | moneyin[0] | buy[3] | buy[1])
     );
     
     
